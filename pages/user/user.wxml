@@ -1,11 +1,25 @@
 <!--pages/user/user.wxml-->
 <view class='body'>
-  <view class='top' style='display:flex;flex-direction:column;background:url({{topbgimage}});background-size:cover'>
+  <view class='top' style='display:flex;flex-direction:column;background:url({{topbgimage}});background-size:cover;background-position:center'>
     <view class='avatar' style='background:url({{avatarimage}});background-size:cover;'></view>
     <view class='nickname'> 
       {{nickname}}
     </view>
-    
+    <view class='decription'>
+      {{decription}}
+    </view>
   </view>
-
+  <view ></view>
+  <scroll-view scroll-y="true"> 
+    <view class="navbar">  
+      <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>   
+    </view> 
+    <!--音乐-->
+    <view hidden="{{currentTab!==0}}">音乐</view>
+    <!--动态-->
+    <view hidden="{{currentTab!==1}}">动态</view>
+    <!--关于我-->
+    <view hidden="{{currentTab!==2}}">关于我</view>
+  </scroll-view> 
 </view>
+
