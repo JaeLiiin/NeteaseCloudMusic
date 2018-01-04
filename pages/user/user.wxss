@@ -3,7 +3,7 @@
   
 }
 .top{
-  height: 250px;
+  height: 230px;
 }
 .avatar{
   margin: 50px auto 5px auto;
@@ -13,8 +13,40 @@
 }
 .nickname{
    margin: 0px auto 0px auto;
-   width: 100px;
    text-align:center;
    color: #fff;
+   font-size: 18px;
 }
+.decription{
+  margin: 0px auto 0px auto;
+  text-align:center;
+  color: #fff;
+  font-size: 14px;
+}
+.navbar{  
+  flex: none;  
+  display: flex;  
+  background: #fff;  
+}  
+.navbar .item{  
+  position: relative;
+  font-size: 14px;  
+  flex: auto;  
+  text-align: center;  
+  line-height: 80rpx;  
+}  
+.navbar .item.active{  
+  color: #d43c33; 
+
+}  
+.navbar .item.active:after{  
+  content: "";  
+  display: block;  
+  position: absolute;  
+  bottom: 0;  
+  left: 0;  
+  right: 0;  
+  height: 4rpx; 
+  background: #d43c33;  
+} 
 
