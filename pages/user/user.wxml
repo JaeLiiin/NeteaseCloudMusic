@@ -1,1 +1,11 @@
 <!--pages/user/user.wxml-->
+<view class='body'>
+  <view class='top' style='display:flex;flex-direction:column;background:url({{topbgimage}});background-size:cover'>
+    <view class='avatar' style='background:url({{avatarimage}});background-size:cover;'></view>
+    <view class='nickname'> 
+      {{nickname}}
+    </view>
+    
+  </view>
+
+</view>

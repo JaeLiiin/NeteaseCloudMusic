@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    avatarimage: "http://p1.music.126.net/-eKZhiet5xNLESOO-wnhWw==/3265549571161679.jpg",
+    topbgimage:
+    "http://p1.music.126.net/o3G7lWrGBQAvSRt3UuApTw==/2002210674180201.jpg",
+    nickname: 'Jaeliiin'
   },
 
   /**
