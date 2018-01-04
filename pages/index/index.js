@@ -1,9 +1,7 @@
 //index.js
 //获取应用实例
-var sliderWidth = 138;
-var flag = true;
+var sliderWidth = 98;
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -14,7 +12,8 @@ Page({
     icontexts: ['每日推荐','热搜排行'],
     activeIndex: 0,
     sliderOffset: 0,
-    sliderLeft: 0
+    sliderLeft: 0,
+    sliderwidth:0
   },
 
   onclick_1:function(){
@@ -29,18 +28,18 @@ Page({
     console.log('tap3')
   },
 
-  click: function(){
-    //console.log('点击文字');
-    if(flag){
-      this.setData({ viewstyle: "window-red"});
-      flag = false;
-    }
-    else{
-      this.setData({ viewstyle: "window" });
-      flag = true;
-    }
+  // click: function(){
+  //   //console.log('点击文字');
+  //   if(flag){
+  //     this.setData({ viewstyle: "window-red"});
+  //     flag = false;
+  //   }
+  //   else{
+  //     this.setData({ viewstyle: "window" });
+  //     flag = true;
+  //   }
     
-  },
+  // },
 
 
   tabClick: function (e) {
@@ -54,17 +53,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.profile);
+    // console.log(options.profile);
     var that = this;
     wx.getSystemInfo({
       success: function (res) {
+        sliderWidth = res.windowWidth / 3;
         that.setData({
-          sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) ,
-          sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
+          // sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth)/2,
+          sliderOffset: (res.windowWidth / that.data.tabs.length) * that.data.activeIndex,
+          sliderwidth: sliderWidth
         });
       }
     });
-
   },
 
   /**
