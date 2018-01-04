@@ -1,0 +1,25 @@
+<!--pages/login_cellphone/login_cellphone.wxml-->
+<form bindsubmit='login'>
+
+<view class="weui-cell weui-cell_vcode">
+  <view class="weui-cell__hd">
+    <text class='iconfont icon-phone;' style='font-size:20px'></text>
+  </view>
+  <view class="weui-cell__bd">
+    <input class="weui-input" type="tel" placeholder="手机号" placeholder-style='font-size:14px;'pattern="[0-9]*" name="cellphone" />
+  </view>
+</view> 
+<view class="weui-cell weui-cell_vcode">
+  <view class="weui-cell__hd">
+    <text class='iconfont icon-mima;' style='font-size:20px'></text>
+  </view>
+  <view class="weui-cell__bd">
+    <input class="weui-input" placeholder="密码" placeholder-style='font-size:14px;' name="password" password='true'/>
+  </view>
+</view> 
+<view class='login-button' >
+    <button class='button' form-type='submit'>
+      登录
+    </button>
+</view>
+</form>

@@ -1,0 +1,27 @@
+/* pages/login/login.wxss */
+.container{
+  height: 600px;
+  align-items: center;
+   background: url('http://developtools-1252452885.file.myqcloud.com/login-background.png'); 
+}
+.icon{
+  width: 62px;
+  height: 62px;
+  background: #d43c33;
+  border-radius: 15px;
+}
+.wangyiyun{
+  margin: 7px;
+}
+.login-button{  
+  width: 300px;
+  height: 83px;
+}
+.button{
+  background-color: #fff;
+  color: #d43c33;
+  font-size: 14px;
+}
+.button::after{
+  border:1px solid #d43c33; 
+}

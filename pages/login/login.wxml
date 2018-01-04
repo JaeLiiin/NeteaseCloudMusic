@@ -1,0 +1,12 @@
+<!--pages/login/login.wxml-->
+<view class='container'>
+  <view class='icon'>
+    <image class='wangyiyun' src='http://developtools-1252452885.file.myqcloud.com/wangyiyun.svg' >
+    </image>
+  </view>
+  <view class='login-button'>
+    <button class='button' bindtap='login_cellphone'>
+      手机号登录
+    </button>
+  </view>
+</view>

@@ -1,0 +1,9 @@
+/* pages/user/user.wxss */
+
+.container {
+  width: 100%;
+  height: 40%;
+  background-image: url();
+  color: black;
+  
+}

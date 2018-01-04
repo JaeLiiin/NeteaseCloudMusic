@@ -1,0 +1,9 @@
+<view id="top" bindtap = "bindtap1">
+  outer view
+  <view id = "middle" bindtap = "bindtap2">
+    middle view
+    <view id = "inner" bindtap = "bindtap3">
+      inner view
+    </view>
+  </view>
+</view>
