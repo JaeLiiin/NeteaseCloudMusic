@@ -52,8 +52,8 @@
 
 
       <view class='recommand_list'>
-        <view wx:for='{{recommend}}' wx:key="*this"  wx:for-item="album" class='recommand_win_2'>
-          <image  style='mode:aspectFit;width:{{recommend_win_width}}px;height:{{recommend_win_width}}px;background-color: black'></image>
+        <view wx:for='{{recommend}}' wx:key="*this"  wx:for-item="album" class='recommand_win_2' wx:for-index = 'i'>
+          <image  style='mode:aspectFit;width:{{recommend_win_width}}px;height:{{recommend_win_width}}px' src='{{recommend[i].picUrl}}'></image>
           <text class='text_limitation'>歌单</text> 
         </view>
       </view>

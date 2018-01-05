@@ -15,9 +15,7 @@ Page({
     sliderLeft: 0,
     sliderwidth:0,
     recommend_win_width:0,
-    recommend:[
-      1,2,3,4,5,6
-    ]
+    recommend:[],
   },
 
   onclick_1:function(){
@@ -44,7 +42,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(options.profile);
+    console.log("index加载");
     var that = this;
     wx.getSystemInfo({
       success: function (res) {
@@ -56,6 +54,24 @@ Page({
         });
       }
     });
+
+    wx.request({
+      url: "http://123.207.142.115:3000/recommend/resource",
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success:function(res){
+
+        that.setData({
+          recommend: res.data.recommend,
+
+
+        })
+        console.log(res.data)
+      },
+      
+    })
+
   },
 
   /**
