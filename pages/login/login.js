@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    win_height:0
     
   },
   login_cellphone: function (){
@@ -16,9 +17,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this
     wx.getSystemInfo({
       success: function(res) {
-        
+        that.setData({
+          win_height:res.windowHeight
+        })
       },
     })
   

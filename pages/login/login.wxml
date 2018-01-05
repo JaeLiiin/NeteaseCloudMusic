@@ -1,5 +1,5 @@
 <!--pages/login/login.wxml-->
-<view class='container'>
+<view class='container' style=' height:{{win_height}}px'>
   <view class='icon'>
     <image class='wangyiyun' src='http://developtools-1252452885.file.myqcloud.com/wangyiyun.svg' >
     </image>

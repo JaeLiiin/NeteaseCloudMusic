@@ -13,7 +13,11 @@ Page({
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
-    sliderwidth:0
+    sliderwidth:0,
+    recommend_win_width:0,
+    recommend:[
+      1,2,3,4,5,6
+    ]
   },
 
   onclick_1:function(){
@@ -27,19 +31,6 @@ Page({
   onclick_3:function(){
     console.log('tap3')
   },
-
-  // click: function(){
-  //   //console.log('点击文字');
-  //   if(flag){
-  //     this.setData({ viewstyle: "window-red"});
-  //     flag = false;
-  //   }
-  //   else{
-  //     this.setData({ viewstyle: "window" });
-  //     flag = true;
-  //   }
-    
-  // },
 
 
   tabClick: function (e) {
@@ -59,9 +50,9 @@ Page({
       success: function (res) {
         sliderWidth = res.windowWidth / 3;
         that.setData({
-          // sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth)/2,
           sliderOffset: (res.windowWidth / that.data.tabs.length) * that.data.activeIndex,
-          sliderwidth: sliderWidth
+          sliderwidth: sliderWidth,
+          recommend_win_width:(res.windowWidth/3)-2,
         });
       }
     });

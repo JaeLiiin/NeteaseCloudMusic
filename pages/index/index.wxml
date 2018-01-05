@@ -51,11 +51,19 @@
       </view>
 
 
-      <view class='recommand_list' style=''>
+      <view class='recommand_list'>
+        <view wx:for='{{recommend}}' wx:key="*this"  wx:for-item="album" class='recommand_win_2'>
+          <image  style='mode:aspectFit;width:{{recommend_win_width}}px;height:{{recommend_win_width}}px;background-color: black'></image>
+          <text class='text_limitation'>歌单</text> 
+        </view>
+      </view>
+
+
+      <!-- <view class='recommand_list' style=''>
         <view class='recommand_win_2' style='justify-content:center' catchtap=''>
           <text class='iconfont icon-yinyue' style='font-size:80px'></text>
-          <text class='text_limitation'>歌单1</text>
-        </view>
+          <text class='text_limitation'>歌单1hdkdfahafklhfskhhshlkhfkjhlshhfksjlhfhfljk</text>
+        </view> 
 
         <view class='recommand_win_2' style='justify-content:center' catchtap=''>
           <text class='iconfont icon-yinyue' style='font-size:80px'></text>
@@ -70,13 +78,14 @@
         
 
         
-      </view>      <!-- 推荐歌单第一行 -->
+      </view>        -->
+      <!-- 推荐歌单第一行   -->
       
 
 
 
 
-      <view class='recommand_list' style=''>
+      <!-- <view class='recommand_list' style=''>
         <view class='recommand_win_2' style='justify-content:center' catchtap=''>
           <text class='iconfont icon-yinyue' style='font-size:80px'></text>
           <text class='text_limitation'>歌单4</text>
@@ -95,15 +104,15 @@
         
 
         
-      </view>       <!-- 推荐歌单第二行 -->
+      </view>        推荐歌单第二行  -->
 
 
       <view style='padding-top:20px'>
         <text style='color:#d43c33'>▍  </text>
-        <text>推荐歌单 ></text>
+        <text>最新音乐 ></text>
       </view>
 
-      <view class='recommand_list' style=''>
+      <!-- <view class='recommand_list' style=''>
         <view class='recommand_win_2' style='justify-content:center' catchtap=''>
           <text class='iconfont icon-yinyue' style='font-size:80px'></text>
           <text class='text_limitation'>歌单4</text>
@@ -118,7 +127,7 @@
           <text class='iconfont icon-yinyue' style='font-size:80px'></text>
           <text class='text_limitation'>歌单6</text>
         </view>
-      </view>       <!-- 最新歌曲第一行 -->
+      </view>        最新歌曲第一行  -->
     </view>                                                                            <!-- 个性推荐内容 -->
 
 
