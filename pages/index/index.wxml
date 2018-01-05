@@ -16,19 +16,20 @@
 
 
 
-    <view class="weui-tab__content" hidden="{{activeIndex != 0}}" display = 'flex'>    <!-- 个性推荐内容 -->
+    <view class="weui-tab__content" hidden="{{activeIndex != 0}}"  style=''>    <!-- 个性推荐内容 -->
       <swiper indicator-dots='true' indicator-color='#000000' indicator-active-color='#d43c33' circular='true' autoplay='true' >
-        <view wx:for="{{imageurls}}" wx:for-item = "i">
-          <swiper-item>
-            <view><image></image></view>
+        <view wx:for="{{recommend_mv_list}}" wx:key='{{recommend_list_key}}' wx:for-item = "i" style=''>
+          <swiper-item style="height:100px">
+            <view style='width:{{recommend_win_width*3}};height:100%;background:url({{i.picUrl}});background-size:cover;background-position:center'></view>
+            <!-- <image style='width:{{recommend_win_width*3}}px;mode:widthFix' src='{{i.picUrl}}'></image> -->
           </swiper-item>
         </view>
-        </swiper>       <!--swiper组件实现滚动 -->
+      </swiper>       <!--swiper组件实现滚动 -->
 
 
 
       <view class='recommand_win'>
-        <view class='recommand_win_2' style='justify-content:center' catchtap='onclick_1'>
+        <view class='recommand_win_2' style='justify-content:center;height:' catchtap='onclick_1'>
           <text class='iconfont icon-jian' style='color:#d43c33;font-size:40px'></text>
           <text style='font-size:17px'>每日推荐</text>
         </view>
@@ -46,15 +47,16 @@
 
 
       <view style='padding-top:20px'>
-        <text style='color:#d43c33'>▍  </text>
-        <text>推荐歌单 ></text>
+        <text style='color:#d43c33;font-size:20px'>▍  </text>
+        <text style='font-size:20px'>推荐歌单 ></text>
       </view>
 
 
       <view class='recommand_list'>
-        <view wx:for='{{recommend}}' wx:key="*this"  wx:for-item="album" class='recommand_win_2' wx:for-index = 'i'>
-          <image  style='mode:aspectFit;width:{{recommend_win_width}}px;height:{{recommend_win_width}}px' src='{{recommend[i].picUrl}}'></image>
-          <text class='text_limitation'>歌单</text> 
+        <view wx:for='{{recommend}}' wx:key="{{recommend_list_key}}"  wx:for-item="album" class='recommand_win_2' style='height:100%'>
+          <!-- <view style='width:{{recommend_win_width}};height:100%;background:url({{album.picUrl}});background-size:cover;background-position:center'></view> -->
+          <image  style='mode:aspectFit;width:{{recommend_win_width}}px;height:{{recommend_win_width}}px' src='{{album.coverImgUrl}}'></image>  
+          <text class='text_limitation' style='max-width:{{recommend_win_width}}px'>{{album.name}}</text> 
         </view>
       </view>
 
@@ -108,8 +110,8 @@
 
 
       <view style='padding-top:20px'>
-        <text style='color:#d43c33'>▍  </text>
-        <text>最新音乐 ></text>
+        <text style='color:#d43c33;font-size:20px'>▍  </text>
+        <text style='font-size:20px'>最新音乐 ></text>
       </view>
 
       <!-- <view class='recommand_list' style=''>
@@ -140,8 +142,24 @@
 
 
     <view class="weui-tab__content" hidden="{{activeIndex != 1}}">     <!-- 歌单内容 -->
-
-      <view class='weui-btn'>123</view>
+      <text style='color:#d43c33;font-size:20px'>▍  </text>
+      <text style='font-size:13px'>我的歌单 ></text>
+      <view wx:for='{{user_album}}' style='display:flex;flex-direction:row' wx:for-item='album'>
+        <view class='songsheet' style='width:{{win_width}}px'>
+          <view class='songsheet-avatar' style="background:url({{album.coverImgUrl}});background-size:cover;background-position:center;"></view>
+          <view class='songsheet-description' style='width: 100%'>
+            <text class='songsheet-name'>{{album.name}}</text>
+            <view class='songsheet-musics'>{{album.trackCount}}首 by {{album.creator.nickname}}</view>
+          </view>
+        </view>
+        <!-- <view class='songsheet'>
+            <view class='songsheet-avatar' style="background:url({{album.coverImgUrl}});background-size:cover;background-position:center;"></view>
+            <view class='songsheet-description' style='width: 100%'>
+              <text class='songsheet-name'>{{album.name}}</text>
+              <view class='songsheet-musics'>{{album.trackCount}}首 by {{album.creator.nickname}}</view>
+            </view>
+        </view> -->
+      </view>
 
       
     

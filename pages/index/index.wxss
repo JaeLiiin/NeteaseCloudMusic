@@ -47,11 +47,47 @@
 
 .text_limitation {
   font-size: 13px;
-  max-width: 130px; 
+  /* max-width: 130px;  */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap; 
   padding-bottom: 20px;
+}
+
+.user_album_text_limitation{
+  font-size: 15px;
+  max-width: 100%; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+}
+
+.songsheet{
+  padding: 5px;
+  padding-right: 15px;
+  display: flex;
+  flex-direciton:row;
+}
+
+.songsheet-avatar{
+  width: 80px;
+  height: 60px;
+}
+
+.songsheet-description{
+  display: flex;
+  flex-direction: column;
+  /* width: 100%;  */
+  margin-left: 8px;
+  justify-content: center;
+  border-bottom: 1px solid #CFCFCF;
+}
+.songsheet-name {
+  font-size: 16px;
+}
+.songsheet-musics{
+  font-size: 12px;
+  color: #A3A3A3;
 }
 
 
