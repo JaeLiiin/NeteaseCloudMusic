@@ -6,7 +6,7 @@
       {{nickname}}
     </view>
     <view class='decription'>
-      {{decription}}
+      {{signature}}
     </view>
   </view>
   <view ></view>
@@ -15,7 +15,20 @@
       <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>   
     </view> 
     <!--音乐-->
-    <view hidden="{{currentTab!==0}}">音乐</view>
+    <view hidden="{{currentTab!==0}}" class='music-container'>
+      <text class='songsheet-text'>歌单({{songsheet.length}})</text>
+      <view class='songsheet-list'>
+        <block wx:for="{{[1,2,3,4,5,6,7,8]}}" wx:key="unique">
+          <view class='songsheet'>
+            <view class='songsheet-avatar' style="background:url('http://p1.music.126.net/CBF9e6HUUSamiKicgi6Zhg==/7793338418451111.jpg');background-size:cover;background-position:center;"></view>
+            <view class='songsheet-description'>
+              <view class='songsheet-name'>同一首歌不一样的味道</view>
+              <view class='songsheet-musics'>{{100}}首,by jaeliiin,播放12222次</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
     <!--动态-->
     <view hidden="{{currentTab!==1}}">动态</view>
     <!--关于我-->

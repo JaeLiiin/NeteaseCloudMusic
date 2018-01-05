@@ -1,9 +1,17 @@
 /* pages/login/login.wxss */
 .container{
+<<<<<<< HEAD
   align-items: center;
    background: url('http://developtools-1252452885.file.myqcloud.com/login-background.png'); 
    background-size: cover;
    background-position: center;
+=======
+  width: 100%;
+  height: 600px;
+  align-items: center;
+   background: url('http://developtools-1252452885.file.myqcloud.com/login-background.png'); 
+   background-size: cover; 
+>>>>>>> 89f8dfe87247cf521060aaf19cdc4607162f1bc6
 }
 .icon{
   width: 62px;
