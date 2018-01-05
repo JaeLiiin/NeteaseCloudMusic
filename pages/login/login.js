@@ -7,10 +7,41 @@ Page({
   data: {
     
   },
+  test: function(){
+    console.log("test123");
+  },
   login_cellphone: function (){
-    wx.switchTab({
-      url: '/pages/index/index',
-    })
+    var that = this;
+    wx.request({
+      url: "http://123.207.142.115:3000/login/cellphone",
+      data: {
+        phone: '13566906378',
+        password: 'iamjjl2014'
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        that.process_data(res);
+        wx.switchTab({
+          url: '/pages/index/index',
+          data: {
+            profile: res.data
+          }
+        })
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: '登录失败',
+          content: '用户名或密码错误',
+          showCancel: false,
+          confirmText: "OK"
+        })
+      }
+    });
+    // wx.switchTab({
+    //   url: '/pages/index/index',
+    // })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -71,5 +102,20 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  process_data: function (res) {
+    var user_data = new Object();
+    user_data.id = res.data.account.id;
+    user_data.avatarUrl = res.data.profile.avatarUrl;
+    user_data.backgroundUrl = res.data.profile.backgroundUrl;
+    user_data.birthday = res.data.profile.birthday;
+    user_data.province = res.data.profile.province;
+    user_data.nickname = res.data.profile.nickname;
+    user_data.gender = res.data.profile.gender;
+    user_data.signature = res.data.profile.signature;
+    wx.setStorage({
+      key: 'user_data',
+      data: user_data,
+    })
   }
 })

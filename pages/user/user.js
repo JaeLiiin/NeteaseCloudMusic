@@ -5,16 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    avatarimage: "http://p1.music.126.net/-eKZhiet5xNLESOO-wnhWw==/3265549571161679.jpg",
-    topbgimage:
-    "http://p1.music.126.net/o3G7lWrGBQAvSRt3UuApTw==/2002210674180201.jpg",
-    nickname: 'Jaeliiin',
-    decription:'这个人很懒啥都没留下',
+    avatarimage: "",
+    topbgimage:"",
+    nickname: "",
+    signature: "",
     navbar: ["音乐", "动态", "关于我"],
     currentTab:0,
     activeIndex: 0,
-    sliderOffset: 0,
-    sliderLeft: 0
+    songsheet: ["1","2","3"],
   },
   navbarTap: function(e){
     this.setData({
@@ -25,7 +23,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var user_data = (wx.getStorageSync('user_data'));
+    this.setData({
+      avatarimage: user_data.avatarUrl,
+      topbgimage: user_data.backgroundUrl,
+      nickname: user_data.nickname,
+      signature: user_data.signature 
+    });
   },
 
   /**

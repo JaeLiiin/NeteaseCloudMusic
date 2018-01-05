@@ -78,7 +78,7 @@
 
       <view class='recommand_list' style=''>
         <view class='recommand_win_2' style='justify-content:center' catchtap=''>
-          <text class='iconfont icon-yinyue' style='font-size:80px'></text>
+          <text class='iconfont icon-yinyue' style='font-size:80px;background:url("http://p1.music.126.net/CBF9e6HUUSamiKicgi6Zhg==/7793338418451111.jpg");'></text>
           <text class='text_limitation'>歌单4</text>
         </view>
 

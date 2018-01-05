@@ -49,4 +49,40 @@
   height: 4rpx; 
   background: #d43c33;  
 } 
+.music-cntainer{
+  
+}
+.songsheet-text{
+  margin-left: 10px;
+  font-size: 12px;
+}
+.songsheet{
+  padding: 5px;
+  padding-right: 15px;
+
+  display: flex;
+  flex-direciton:row;
+}
+.songsheet-avatar{
+  width: 80px;
+  height: 60px;
+}
+.songsheet-description{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: 8px;
+  
+  justify-content: center;
+  border-bottom: 1px solid #CFCFCF;
+}
+.songsheet-name {
+  font-size: 16px;
+
+}
+.songsheet-musics{
+  font-size: 12px;
+  color: #A3A3A3;
+}
+
 
