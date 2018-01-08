@@ -16,8 +16,8 @@ Page({
     wx.request({
       url: "http://123.207.142.115:3000/login/cellphone",
       data: {
-        phone: '13566906378',
-        password: 'iamjjl2014'
+        phone: '13297047486',
+        password: 'hyfh789pop'
       },
       header: {
         'content-type': 'application/json' // 默认值

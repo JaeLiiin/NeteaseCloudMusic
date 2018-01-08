@@ -1,0 +1,37 @@
+<!--pages/music_list/music_list.wxml-->
+<block class='container'>
+  <view class='header'>
+    <view class='coverImg' style='background:url({{music_list.coverImgUrl}});background-size:cover;background-position:center'></view>
+    <view class='album-description'>
+      <text class='album-name'>{{album_name}}</text>
+      <view class='album-creator'>
+        <view class='creator-avatar' style='background:url({{music_list.creator.avatarUrl}});background-size:cover;background-position:center'></view>
+        <text class='creator-name'>{{music_list.creator.nickname}}</text>
+      </view>
+    </view>
+  </view>      <!-- 标头 -->
+  
+  <view class='music-list'>
+    <text class='desc'>
+      <text style='color:#d43c33;font-size:17px'>▍  </text>
+      <text style='font-size:17px;width:100%;'>歌单 共{{music_list.tracks.length}}首</text>
+    </text>
+    <view wx:for='{{music_list.tracks}}' wx:key='unique' wx:for-item='music' wx:for-index='count'>
+      <view class='music-sheet'>
+        <view class='music-num' style=''>
+          <text class='position'>{{count+1}}</text>
+        </view>
+        <view class='music-detail' style='width:100%'>
+          <text class='music-name'>{{music.name}}</text>
+          <view class='music-desc'>
+            <block wx:for='{{music.ar}}' wx wx:for-item='singer' wx:key='unique'>
+              <text class='music-singer'>{{singer.name}}/</text>
+            </block>
+            <text class='music-singer'> -{{music.al.name}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+</block>

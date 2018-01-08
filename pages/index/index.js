@@ -16,6 +16,11 @@ Page({
     sliderwidth:0,
     user_id:0,
     win_width:0,
+    active_album:0,
+    album:{
+      album_id:0,
+      album_name:""
+    },
     recommend_win_width:0,
     recommend:[],
     recommend_mv_list:[],
@@ -24,7 +29,13 @@ Page({
   },
 
   onclick_1:function(){
-    console.log("tap1");
+    var that = this;
+    console.log("每日推荐 启动！");
+    console.log(this.data.album.album_id);
+    console.log(that.data.album.album_name);
+    wx.navigateTo({
+      url: '/pages/music_list/music_list?id='+that.data.album.album_id+'&name='+that.data.album.album_name,
+    })
   },
 
   onclick_2:function(){
@@ -43,11 +54,37 @@ Page({
     });
   },
 
+  album_access:function(e){
+    var that = this;
+    console.log("歌单 启动！");
+    this.setData({
+      active_album: e.currentTarget.id
+    })
+    console.log(this.data.active_album)
+    wx.navigateTo({
+      url: '/pages/music_list/music_list?id=' + that.data.user_album[that.data.active_album].id + '&name=' + that.data.user_album[that.data.active_album].name,
+    })
+  },
+
+  album_access_1: function (e) {
+    var that = this;
+    console.log("推荐 启动！");
+    this.setData({
+      active_album: e.currentTarget.id
+    })
+    console.log(this.data.active_album)
+    wx.navigateTo({
+      url: '/pages/music_list/music_list?id=' + that.data.recommend[that.data.active_album].id + '&name=' + that.data.recommend[that.data.active_album].name,
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("index加载");
+    console.log("index 加载!");
+    var str1 = "album.album_id";
+    var str2 = "album.album_name";
     var that = this;
     var user_data = (wx.getStorageSync('user_data'));
     wx.getSystemInfo({
@@ -65,7 +102,10 @@ Page({
 
 
     wx.request({
-      url: "http://123.207.142.115:3000/top/playlist/highquality?limit=6",
+      url: "http://123.207.142.115:3000/top/playlist/highquality",
+      data:{
+        limit:6
+      },
       header: {
         'content-type': 'application/json' // 默认值
       },
@@ -107,6 +147,23 @@ Page({
         console.log(res.data)
       },
 
+    })    //用户歌单请求
+
+    wx.request({
+      
+      url: "http://123.207.142.115:3000/personalized/newsong",
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        that.setData({
+          [str1] : res.data.result[0].id,
+          [str2] : res.data.result[0].name
+        })
+        console.log(res.data)
+        // album_id=res.data.result[0].id;
+        // console.log(res.data.result[0].id)
+      }
     })
 
   },

@@ -10,26 +10,65 @@ Page({
     nickname: "",
     signature: "",
     navbar: ["音乐", "动态", "关于我"],
+    active_album:0,
     currentTab:0,
     activeIndex: 0,
-    songsheet: ["1","2","3"],
+    // songsheet: ["1","2","3"],
+    user_album:[],
   },
   navbarTap: function(e){
     this.setData({
       currentTab: e.currentTarget.dataset.idx
     });
   },
+
+  user_album_access: function (e) {
+    var that = this;
+    console.log("歌单 启动！");
+    this.setData({
+      active_album: e.currentTarget.id
+    })
+    console.log(this.data.active_album)
+    wx.navigateTo({
+      url: '/pages/music_list/music_list?id=' + that.data.user_album[that.data.active_album].id + '&name=' + that.data.user_album[that.data.active_album].name,
+    })
+  },
+
+
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     var user_data = (wx.getStorageSync('user_data'));
+    var user_id = (wx.getStorageSync('user_data.id'));
     this.setData({
       avatarimage: user_data.avatarUrl,
       topbgimage: user_data.backgroundUrl,
       nickname: user_data.nickname,
       signature: user_data.signature 
-    });
+    });    //从本地缓存读取用户资料
+
+
+
+
+    wx.request({
+      url: "http://123.207.142.115:3000/user/playlist",
+      data: {
+        uid: user_data.id,
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        that.setData({
+          user_album: res.data.playlist,
+        }),
+          console.log(res.data)
+      },
+
+    })  //用户歌单请求
   },
 
   /**

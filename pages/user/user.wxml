@@ -16,14 +16,14 @@
     </view> 
     <!--音乐-->
     <view hidden="{{currentTab!==0}}" class='music-container'>
-      <text class='songsheet-text'>歌单({{songsheet.length}})</text>
+      <text class='songsheet-text'>歌单({{user_album.length}})</text>
       <view class='songsheet-list'>
-        <block wx:for="{{[1,2,3,4,5,6,7,8]}}" wx:key="unique">
-          <view class='songsheet'>
-            <view class='songsheet-avatar' style="background:url('http://p1.music.126.net/CBF9e6HUUSamiKicgi6Zhg==/7793338418451111.jpg');background-size:cover;background-position:center;"></view>
+        <block wx:for="{{user_album}}" wx:key="unique" wx:for-item = "album">
+          <view class='songsheet' id='{{index}}' bindtap='user_album_access'>
+            <view class='songsheet-avatar' style="background:url({{album.coverImgUrl}});background-size:cover;background-position:center;"></view>
             <view class='songsheet-description'>
-              <view class='songsheet-name'>同一首歌不一样的味道</view>
-              <view class='songsheet-musics'>{{100}}首,by jaeliiin,播放12222次</view>
+              <view class='songsheet-name'>{{album.name}}</view>
+              <view class='songsheet-musics'>{{album.trackCount}}首,by {{album.creator.nickname}},播放{{album.playCount}}次</view>
             </view>
           </view>
         </block>
