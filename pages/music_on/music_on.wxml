@@ -1,2 +1,11 @@
-<!--pages/music_on/music_on.wxml-->
-<text>pages/music_on/music_on.wxml</text>
+<view class='container' style='width:{{screen_width}}px;height:{{screen_height}}px;background-image:url("http://p4.music.126.net/n3VkEOPXgCWDOvMRQNoffQ==/18364043207125334.jpg");background-size:cover;background-position:center;'>
+  <view class='neddle' style='left:{{screen_width/2-30}}px'></view>
+  
+    <view class='changpian' style='background:url("http://s3.music.126.net/m/s/img/disc-ip6.png");background-size:cover;background-position:center;'>
+      
+    </view>
+    <view class='avatar'></view>
+  
+  
+
+</view>

@@ -1,10 +1,9 @@
 {
   "pages": [
-
+    "pages/music_on/music_on",
     "pages/login/login",
     "pages/music_list/music_list",
     "pages/index/index",
-    "pages/music_on/music_on",
     "pages/search/search",
     "pages/user/user",
     "pages/login_cellphone/login_cellphone"
