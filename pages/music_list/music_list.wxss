@@ -30,6 +30,7 @@
   margin-top: 20px;
   width:200px;
   height: 50px;
+  color: white;
 }
 
 .album-creator{
@@ -49,6 +50,8 @@
   font-size: 13px;
   width: 100px;
   margin-left: 10px;
+  color: white;
+  justify-content: center;
 }
 
 

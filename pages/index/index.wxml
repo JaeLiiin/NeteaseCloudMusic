@@ -58,8 +58,6 @@
             <view style='background:url({{album.coverImgUrl}});background-size:cover;background-position:center;width:{{recommend_win_width}}px;height:{{recommend_win_width}}px'></view>  
             <text class='text_limitation' style='max-width:{{recommend_win_width}}px'>{{album.name}}</text> 
           </view>
-          <!-- <view style='background:url({{album.coverImgUrl}});background-size:cover;background-position:center;width:{{recommend_win_width}}px;height:{{recommend_win_width}}px'></view>  
-          <text class='text_limitation' style='max-width:{{recommend_win_width}}px'>{{album.name}}</text>  -->
         </view>
       </view>
 
@@ -147,7 +145,7 @@
     <view class="weui-tab__content" hidden="{{activeIndex != 1}}">     <!-- 歌单内容 -->
       <text style='color:#d43c33;font-size:20px'>▍  </text>
       <text style='font-size:13px'>我的歌单 ></text>
-      <view wx:for='{{user_album}}' style='display:flex;flex-direction:row' wx:for-item='album'>
+      <view wx:for='{{user_album}}' style='display:flex;flex-direction:row' wx:for-item='album' wx:>
         <view id="{{index}}" class='songsheet' style='width:{{win_width}}px'  bindtap='album_access'>
           <view class='songsheet-avatar' style="background:url({{album.coverImgUrl}});background-size:cover;background-position:center;"></view>
           <view class='songsheet-description' style='width: 100%'>
@@ -155,13 +153,7 @@
             <view class='songsheet-musics'>{{album.trackCount}}首 by {{album.creator.nickname}}</view>
           </view>
         </view>
-        <!-- <view class='songsheet'>
-            <view class='songsheet-avatar' style="background:url({{album.coverImgUrl}});background-size:cover;background-position:center;"></view>
-            <view class='songsheet-description' style='width: 100%'>
-              <text class='songsheet-name'>{{album.name}}</text>
-              <view class='songsheet-musics'>{{album.trackCount}}首 by {{album.creator.nickname}}</view>
-            </view>
-        </view> -->
+        
       </view>
 
       

@@ -21,10 +21,10 @@ Page({
       album_id:0,
       album_name:""
     },
+    hot_list:[],
     recommend_win_width:0,
     recommend:[],
     recommend_mv_list:[],
-    recommend_list_key:[1,2,3,4,5,6],
     user_album:[],
   },
 
@@ -36,11 +36,17 @@ Page({
     wx.navigateTo({
       url: '/pages/music_list/music_list?id='+that.data.album.album_id+'&name='+that.data.album.album_name,
     })
-  },
+  },    //每日推荐
 
   onclick_2:function(){
-    console.log("tap2");
-  },
+    var that = this;
+    console.log("每日推荐 启动！");
+    console.log(this.data.album.album_id);
+    console.log(that.data.album.album_name);
+    wx.navigateTo({
+      url: '/pages/music_list/music_list?id=' + that.data.hot_list.id + '&name=' + that.data.hot_list.name,
+    })
+  },    //热搜排行
 
   onclick_3:function(){
     console.log('tap3')
@@ -93,7 +99,7 @@ Page({
         that.setData({
           sliderOffset: (res.windowWidth / that.data.tabs.length) * that.data.activeIndex,
           sliderwidth: sliderWidth,
-          recommend_win_width:(res.windowWidth/3)-2,
+          recommend_win_width:(res.windowWidth/3)-5,
           win_width:res.windowWidth,
         });
       }
@@ -102,10 +108,10 @@ Page({
 
 
     wx.request({
-      url: "http://123.207.142.115:3000/top/playlist/highquality",
-      data:{
-        limit:6
-      },
+      url: "http://123.207.142.115:3000/top/playlist?limit=12&order=new",
+      // data:{
+      //   limit:6
+      // },
       header: {
         'content-type': 'application/json' // 默认值
       },
@@ -116,7 +122,7 @@ Page({
         console.log(res.data)
       },
       
-    })    //精品歌单请求
+    })    //推荐歌单请求
 
     wx.request({
       url: "http://123.207.142.115:3000/personalized/mv",
@@ -150,6 +156,7 @@ Page({
     })    //用户歌单请求
 
     wx.request({
+      // url: "http://112.74.189.215:5000/ask?id=123",
       
       url: "http://123.207.142.115:3000/personalized/newsong",
       header: {
@@ -157,13 +164,29 @@ Page({
       },
       success: function (res) {
         that.setData({
-          [str1] : res.data.result[0].id,
-          [str2] : res.data.result[0].name
+          [str1] : res.data.result[1].id,
+          [str2] : res.data.result[1].name
         })
         console.log(res.data)
         // album_id=res.data.result[0].id;
         // console.log(res.data.result[0].id)
       }
+    })      //每日推荐请求
+
+    wx.request({
+      url: "http://123.207.142.115:3000/top/list?idx=1",
+      header:{
+        'content-type':'application/json'
+      },
+      success:function(res){
+        that.setData({
+          hot_list: res.data.playlist
+        })
+        console.log(res.data)
+      },
+
+
+      
     })
 
   },
