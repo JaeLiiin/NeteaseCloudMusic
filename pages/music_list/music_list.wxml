@@ -17,7 +17,7 @@
       <text style='font-size:17px;width:100%;'>歌单 共{{music_list.tracks.length}}首</text>
     </text>
     <view wx:for='{{music_list.tracks}}' wx:key='unique' wx:for-item='music' wx:for-index='count'>
-      <view class='music-sheet'>
+      <view class='music-sheet' id='{{count}}' bindtap='music_access'>
         <view class='music-num' style=''>
           <text class='position'>{{count+1}}</text>
         </view>

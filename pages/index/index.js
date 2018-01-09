@@ -187,7 +187,24 @@ Page({
 
 
       
-    })
+    })   //热搜排行推荐
+
+    wx.request({
+      url: "http://123.207.142.115:3000/top/playlist?limit=12&order=new",
+      // data:{
+      //   limit:6
+      // },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        that.setData({
+          recommend: res.data.playlists,
+        }),
+          console.log(res.data)
+      },
+
+    })    //最新歌单请求
 
   },
 

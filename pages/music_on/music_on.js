@@ -6,7 +6,10 @@ Page({
    */
   data: {
     screen_width : 0,
-    screen_height : 0
+    screen_height : 0,
+    music_id :0,
+    music_cov : "",
+    music_url : "123",
   },
 
   /**
@@ -14,6 +17,12 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    var music_dat=[];
+    var music_dat = (wx.getStorageSync('music_data'));
+    this.setData({
+      music_id: music_dat.id,
+      music_cov: music_dat.pic,
+    })
     wx.getSystemInfo({
       success: function(res) {
         that.setData({
@@ -22,13 +31,32 @@ Page({
         });
       },
     })
+    wx.request({
+      url: "http://123.207.142.115:3000/music/url",
+      data:{
+        id:that.data.music_id,
+      },
+      header:{
+        'content-type': 'application/json' // 默认值
+      },
+      success:function(res){
+        that.setData({
+          music_url:res.data.data[0].url
+        })
+        console.log(that.data.music_url)
+        wx.playBackgroundAudio({
+          dataUrl: that.data.music_url
+        });
+      }
+    });      //歌曲url请求
+    
   },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-  
+  onReady: function (e) {
   },
 
   /**

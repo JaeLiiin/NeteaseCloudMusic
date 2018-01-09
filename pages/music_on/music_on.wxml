@@ -3,9 +3,11 @@
   
     <view class='changpian' style='background:url("http://s3.music.126.net/m/s/img/disc-ip6.png");background-size:cover;background-position:center;'>
       
-    </view>
-    <view class='avatar'></view>
-  
+  </view>
+  <view class='avatar'></view>
+  <!-- <view style='background-color:black;width:100rpx;height:100rpx' bindtap='audioplay'></view>
+  <audio    src='http://m10.music.126.net/20180109154110/1137798cc69d02f13b6502451277dcba/ymusic/3ea4/dd50/3564/8e78207b45033b632596286f854dcd66.mp3' id='myAudio' controls='true'></audio> -->
   
 
 </view>
+

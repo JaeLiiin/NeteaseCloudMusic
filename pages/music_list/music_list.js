@@ -10,8 +10,42 @@ Page({
     music_list:[],
     win_width:0,
     win_height: 0,
-  
+    music_url:"",
+    song_name:"",
+    music_avatar:"",
+    music_id:0,
+    active_music:0,
   },
+
+  music_access:function(e){
+    var that = this;
+    var music_list = this.data.music_list;
+    console.log(music_list);
+    this.setData({
+      active_music: e.currentTarget.id,
+    });
+    console.log(this.data.active_music);
+    this.music_data_process(music_list);
+
+    // wx.request({
+    //   url: "http://123.207.142.115:3000/music/url?",
+    //   data:{
+    //     id:that.data.music_id,
+    //   },
+    //   header:{
+    //     'content-type': 'application/json' // 默认值
+    //   },
+    //   success:function(res){
+    //     that.setData({
+    //       music_url:res.data.data.url
+    //     })
+    //   }
+    // })       歌曲url请求
+    wx.switchTab({
+      url:'/pages/music_on/music_on',
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -47,8 +81,8 @@ Page({
         that.setData({
           music_list:res.data.playlist
         });
-        console.log(res.data)
-        
+        console.log('123'),
+        console.log(that.data.music_list)
       }
     })
   
@@ -101,5 +135,13 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  music_data_process:function(res){
+    var that = this;
+    var music_data = new Object();
+    music_data.id = res.tracks[that.data.active_music].id;
+    music_data.pic = res.tracks[that.data.active_music].al.picUrl;
+    wx.setStorageSync('music_data', music_data);
   }
 })
