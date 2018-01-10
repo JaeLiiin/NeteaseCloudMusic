@@ -24,8 +24,6 @@
   width: 380rpx;
   height: 380rpx;
   background: url("http://p1.music.126.net/px0W9cn-aXnVhvMtq3nawg==/8000046606189696.jpg");
-  background-size: cover;
-  background-position: center;
   margin: auto;
   margin-top: 55rpx;
   z-index: 20;
