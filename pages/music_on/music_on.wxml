@@ -7,7 +7,7 @@
   
    <view class='conrtol_butons' style=''>
     <text class='iconfont icon-xiayishou' style='font-size:80rpx;color:#fff' bindtap='pre_music'></text>
-    <text class='iconfont {{icon_playorpause}}' style='font-size:120rpx;color:#fff;margin: 0 120rpx 0 120rpx;' bindtap='pause_play'></text>
+    <text class='iconfont {{icon_playorpause}}' style='font-size:100rpx;color:#fff;margin: 0 120rpx 0 120rpx;' bindtap='pause_play'></text>
     <text class='iconfont icon-shangxiayishou' style='font-size:80rpx;color:#fff;' bindtap='next_music'></text>
   </view> 
 </view>

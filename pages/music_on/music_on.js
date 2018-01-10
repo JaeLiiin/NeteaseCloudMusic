@@ -6,10 +6,11 @@ Page({
    */
   data: {
     play_flag : true,
-    icon_playorpause: "icon-zantingbofang",
+    icon_playorpause: "icon-zanting",
     screen_width : 0,
     screen_height : 0,
     music_dat : [],
+    music_length : 0,
     active_music : 0,
     music_pic_url : "",
     music_plur_pic_url :"",
@@ -25,12 +26,12 @@ Page({
     if(this.data.play_flag)
     {
       this.setData({
-        icon_playorpause : "icon-zantingbofang"
+        icon_playorpause : "icon-bofang2"
       });
     }
     else{
       this.setData({
-        icon_playorpause: "icon-bofang"
+        icon_playorpause: "icon-zanting"
       });
     }
 
@@ -48,6 +49,15 @@ Page({
       });
     }
     this.change_icon();
+    const backgroundAudioManager = wx.getBackgroundAudioManager();
+    if(this.data.play_flag)
+    {
+      backgroundAudioManager.pause();
+    }
+    else
+    {
+      backgroundAudioManager.play();
+    }
   },
   music_play : function(music_url){
     const backgroundAudioManager = wx.getBackgroundAudioManager();
@@ -56,8 +66,53 @@ Page({
     backgroundAudioManager.src = music_url;
 
   },
+  pre_music :function(){
+    var length = this.data.music_length;
+    var active_music = this.data.active_music;
+    if (this.data.active_music == 0)
+    {
+      this.setData({
+        active_music : length
+      });
+    }else{
+      this.setData({
+        active_music : --active_music
+      });
+    }
+    this.music_refresh();
+    this.music_request();
+  },
+  next_music : function(){
+    var length = this.data.music_length;
+    var active_music = this.data.active_music;
+    if(this.data.active_music == length-1)
+    {
+      this.setData({
+        active_music : 0
+      });
+    }else{
+      this.setData({
+        active_music: ++active_music
+      });
+    }
+    this.music_refresh();
+    this.music_request();
+  },
+  music_refresh : function(){
+    var active_music = this.data.active_music;
+    var music_dat = this.data.music_dat;
+    this.setData({
+      music_pic_url: music_dat[active_music].pic_url,
+      music_plur_pic_url: "http://music.163.com/api/img/blur/" + music_dat[active_music].str,
+    })
+  },
   music_request : function(){
     var that =this;
+    console.log(this.data.active_music);
+    var music_current_id = this.data.music_dat[this.data.active_music].id
+    this.setData({
+      music_current_id: music_current_id
+    });
     var music_id = that.data.music_current_id;
     wx.request({
       url: "http://123.207.142.115:3000/music/url",
@@ -82,17 +137,14 @@ Page({
     var active_music = wx.getStorageSync('active_music');
     var music_pic_str = music_dat[active_music].str;
     var music_pic_url = music_dat[active_music].pic_url;
-    
+    var music_length = music_dat.length;
     this.setData({
       music_dat: music_dat,
       active_music: active_music,
       music_pic_url: music_pic_url,
-      music_plur_pic_url: "http://music.163.com/api/img/blur/" + music_pic_str
+      music_plur_pic_url: "http://music.163.com/api/img/blur/" + music_pic_str,
+      music_length : music_length
     })
-    var music_current_id = this.data.music_dat[this.data.active_music].id
-    this.setData({
-      music_current_id: music_current_id
-    });
   },
   onLoad: function (options) {
     var that = this;
