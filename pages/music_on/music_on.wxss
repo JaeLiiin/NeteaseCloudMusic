@@ -7,7 +7,7 @@
   width: 200rpx;
   height: 280rpx;
   top: -8rpx;
-  background: url("http://s3.music.126.net/m/s/img/needle.png");
+  background: url("http://developtools-1252452885.file.myqcloud.com/needle.png");
   background-size: contain; 
   z-index: 50;
 }
@@ -29,4 +29,11 @@
   z-index: 20;
   transition: transform 0.4s ease-out;
   transform: rotate(360deg);
+}
+.conrtol_butons{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top:  720rpx;
+
 }

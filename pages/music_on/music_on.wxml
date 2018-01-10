@@ -1,15 +1,13 @@
 <view class='container' style='width:{{screen_width}}px;height:{{screen_height}}px;background-image:url("{{music_plur_pic_url}}");background-size:cover;background-position:center;'>
-  <view class='neddle' style='left:{{screen_width/2-30}}px'></view>
+  <view class='neddle' style='left:{{screen_width/2-28}}px'></view>
   
     <view class='changpian' style='background:url("http://s3.music.126.net/m/s/img/disc-ip6.png");background-size:cover;background-position:center;'> 
   </view>
   <view class='avatar' style='background:url({{music_pic_url}});background-size:cover;background-position: center;'></view>
-  <view class="section section_gap">
-  <text class="section__title">显示当前value</text>
-  <view class="body-view">
-    <slider bindchange="slider3change" show-value/>
-  </view>
+  
+   <view class='conrtol_butons' style=''>
+    <text class='iconfont icon-xiayishou' style='font-size:80rpx;color:#fff' bindtap='pre_music'></text>
+    <text class='iconfont {{icon_playorpause}}' style='font-size:120rpx;color:#fff;margin: 0 120rpx 0 120rpx;' bindtap='pause_play'></text>
+    <text class='iconfont icon-shangxiayishou' style='font-size:80rpx;color:#fff;' bindtap='next_music'></text>
+  </view> 
 </view>
-
-</view>
-

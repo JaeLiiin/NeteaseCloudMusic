@@ -5,6 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    play_flag : true,
+    icon_playorpause: "icon-zantingbofang",
     screen_width : 0,
     screen_height : 0,
     music_dat : [],
@@ -18,6 +20,35 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  change_icon : function()
+  {
+    if(this.data.play_flag)
+    {
+      this.setData({
+        icon_playorpause : "icon-zantingbofang"
+      });
+    }
+    else{
+      this.setData({
+        icon_playorpause: "icon-bofang"
+      });
+    }
+
+  },
+  pause_play: function(){
+    if(this.data.play_flag)
+    {
+      this.setData({
+        play_flag: false
+      });
+      
+    }else{
+      this.setData({
+        play_flag: true
+      });
+    }
+    this.change_icon();
+  },
   music_play : function(music_url){
     const backgroundAudioManager = wx.getBackgroundAudioManager();
     backgroundAudioManager.title = this.data.music_dat[this.data.active_music].name;
