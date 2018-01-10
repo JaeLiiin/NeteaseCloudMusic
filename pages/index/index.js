@@ -26,6 +26,7 @@ Page({
     recommend:[],
     recommend_mv_list:[],
     user_album:[],
+    personal_fm:[],
   },
 
   onclick_1:function(){
@@ -40,7 +41,7 @@ Page({
 
   onclick_2:function(){
     var that = this;
-    console.log("每日推荐 启动！");
+    console.log("热搜排行 启动！");
     console.log(this.data.album.album_id);
     console.log(that.data.album.album_name);
     wx.navigateTo({
@@ -49,7 +50,24 @@ Page({
   },    //热搜排行
 
   onclick_3:function(){
-    console.log('tap3')
+    var that = this;
+    console.log('私人fm 启动！');
+    wx.request({
+      url: 'http://123.207.142.115:3000/personal_fm',
+      header:{
+        'content-type' : 'application:json'
+      },
+      success:function(res){
+        that.setData({
+          personal_fm:res.data
+        })
+        console.log(that.data.personal_fm);
+        that.music_data_process(that.data.personal_fm);
+        wx.switchTab({
+          url: '/pages/music_on/music_on',
+        })
+      }
+    })
   },
 
 
@@ -255,5 +273,37 @@ Page({
    */
   onShareAppMessage: function () {
     
+  },
+
+  music_data_process: function (res) {
+    var that = this;
+    var music_list = new Array();   //歌单数组
+    for (var i = 0; i < 3; i++) {
+      var music_data = new Object();
+      music_data.name = res.data[i].name;
+      music_data.id = res.data[i].id;
+      music_data.str = res.data[i].album.pic;
+      music_data.pic_url = res.data[i].album.picUrl;
+      music_list.push(music_data);
+    }
+    console.log(music_list);
+    wx.setStorageSync('music_list', music_list);
+
+    wx.setStorageSync('active_music', 3);
+
   }
+
+  // music_data_process: function (res) {
+  //   var that = this;
+  //   var music_list = new Array();   //歌单数组
+  //   var music_data = new Object();
+  //   music_data.name = res.name;
+  //   music_data.id = res.id;
+  //   music_data.str = res.album.pic;
+  //   music_data.pic_url = res.album.picUrl;
+  //   music_list.push(music_data);
+  //   console.log(music_list);
+  //   wx.setStorageSync('music_list', music_list);
+
+  // }
 })

@@ -5,13 +5,16 @@
     <view class='nickname'> 
       {{nickname}}
     </view>
-    <view class='decription'>
-      {{signature}}
+    <view class='follow'>
+      关注 {{user_profile.profile.follows}}   粉丝  {{user_profile.profile.followeds}}
     </view>
+    <!-- <view class='decription'>
+      {{signature}}
+    </view> -->
   </view>
   <view ></view>
   <scroll-view scroll-y="true"> 
-    <view class="navbar">  
+    <view class="navbar" style='border-bottom:1px solid grey'>  
       <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>   
     </view> 
     <!--音乐-->
@@ -29,10 +32,35 @@
         </block>
       </view>
     </view>
+
+
     <!--动态-->
-    <view hidden="{{currentTab!==1}}">动态</view>
+    <view hidden="{{currentTab!==1}}">
+    </view>
+
+
+
+
+
+
+
     <!--关于我-->
-    <view hidden="{{currentTab!==2}}">关于我</view>
+    <view hidden="{{currentTab!==2}}">
+      <view style='padding-top:20rpx;padding-bottom:20rpx'>
+        <text style='color:#d43c33;font-size:15px'>▍  </text>
+        <text style='font-size:15px'>个人信息</text>
+      </view>
+      <view class='user_profile'>
+        <text style='padding-top:5px'>等级： LV.{{user_profile.level}}</text>
+        <text style='padding-top:5px'>性别：{{user_gender}}</text>
+        <text style='padding-top:5px'>听过歌曲：{{user_profile.listenSongs}}首</text>
+      </view>
+      <view style='padding-top:20rpx;padding-bottom:20rpx'>
+        <text style='color:#d43c33;font-size:15px'>▍  </text>
+        <text style='font-size:15px'>个人介绍</text>
+        <text class='user_profile' style='padding-top:5px'>{{signature}}</text>
+      </view>
+    </view>
   </scroll-view> 
 </view>
 

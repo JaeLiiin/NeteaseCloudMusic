@@ -10,7 +10,32 @@ Page({
     search_showed:false,
     search_result:[],
     result_showed:false,
-    a:6,
+    picurl:"",
+    pic_id:[],
+  },
+
+  music_access:function(e){
+    var that = this;
+    var num = e.currentTarget.id;
+    wx.request({
+      url: 'http://123.207.142.115:3000/album?id='+that.data.search_result.songs[num].album.id,
+      header:{
+        'content-type' : 'application:json'
+      },
+      success:function(res){
+        that.setData({
+          pic_url:res.data.album.picUrl,
+          pic_id:res.data.album.picId
+        });
+        that.music_data_process(that.data.search_result.songs[num])
+        wx.switchTab({
+          url: '/pages/music_on/music_on',
+        })
+      }
+    })
+
+
+    
   },
 
 
@@ -134,5 +159,21 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+
+  music_data_process: function (res) {
+    var that = this;
+    var music_list = new Array();   //歌单数组
+    var music_data = new Object();
+      music_data.name = res.name;
+      music_data.id = res.id;
+      music_data.str = that.data.pic_id;
+      music_data.pic_url = that.data.pic_url;
+      music_list.push(music_data);
+      console.log(music_list);
+    wx.setStorageSync('music_list', music_list);
+    // wx.setStorageSync('active_music', this.data.active_music);
+
   }
 })

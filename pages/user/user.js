@@ -15,6 +15,8 @@ Page({
     activeIndex: 0,
     // songsheet: ["1","2","3"],
     user_album:[],
+    user_profile:[],
+    user_gender:"",
   },
   navbarTap: function(e){
     this.setData({
@@ -42,13 +44,14 @@ Page({
   onLoad: function (options) {
     var that = this;
     var user_data = (wx.getStorageSync('user_data'));
-    var user_id = (wx.getStorageSync('user_data.id'));
+    // var user_id = (wx.getStorageSync('user_data.id'));
     this.setData({
       avatarimage: user_data.avatarUrl,
       topbgimage: user_data.backgroundUrl,
       nickname: user_data.nickname,
       signature: user_data.signature 
     });    //从本地缓存读取用户资料
+
 
 
 
@@ -69,6 +72,41 @@ Page({
       },
 
     })  //用户歌单请求
+
+
+    wx.request({
+      url: "http://123.207.142.115:3000/user/detail?uid="+user_data.id,
+      header:{
+        'content-type': 'application:json'
+      },
+      success:function(res){
+        if(res.data.profile.gender==1){
+          that.setData({
+            user_gender:'男',
+            user_profile: res.data
+          })
+        }else{
+          that.setData({
+            user_gender: '女',
+            user_profile: res.data
+          })
+        
+        }
+        
+        console.log(res.data)
+      }
+    })    //用户信息请求
+
+    // if(that.data.user_profile.profile.gender==1){
+    //   this.setData({
+    //     user_gender:"男"
+    //   })
+    // }
+    // else {
+    //   this.setData({
+    //     user_gender:"女"
+    //   })
+    // }
   },
 
   /**
