@@ -139,9 +139,22 @@ Page({
 
   music_data_process:function(res){
     var that = this;
-    var music_data = new Object();
-    music_data.id = res.tracks[that.data.active_music].id;
-    music_data.pic = res.tracks[that.data.active_music].al.picUrl;
-    wx.setStorageSync('music_data', music_data);
+    var music_list = new Array();   //歌单数组
+    var music_number = res.tracks.length; //歌曲数量
+    console.log(music_number);
+    for(var i = 0;i<music_number;i++)
+    {
+      var music_data = new Object();
+      music_data.name = res.tracks[i].name;
+      music_data.id = res.tracks[i].id;
+      music_data.str = res.tracks[i].al.pic;
+      music_data.pic_url = res.tracks[i].al.picUrl;
+      music_list.push(music_data);
+    }
+    console.log(music_list);
+    wx.setStorageSync('music_list', music_list); 
+
+    wx.setStorageSync('active_music',this.data.active_music);
+
   }
 })
