@@ -1,33 +1,66 @@
 <!--pages/search/search.wxml-->
-<view class="weui-search-bar">
-  <view class="weui-search-bar__form">
-    <view class="weui-search-bar__box">
-      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-      <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
-      <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
-        <icon type="clear" size="14"></icon>
+<view>
+  <view class="weui-search-bar">
+    <view class="weui-search-bar__form">
+      <view class="weui-search-bar__box">
+        <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+        <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+          <icon type="clear" size="14"></icon>
+        </view>
+      </view>
+      <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput" style='height:40rpx'>
+        <icon class="weui-icon-search" type="search" size="14"></icon>
+        <view class="weui-search-bar__text">搜索</view>
+      </label>
+    </view>
+
+
+
+    <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput" style='font-size:15px'>取消</view>
+
+  </view>
+
+  <view class="weui-cells searchbar-result" wx:if="{{search_showed}}">
+    <view class="weui-cell" hover-class="weui-cell_active">
+      <view class="weui-cell__bd">
+        <view bindtap='search'>搜索"{{inputVal}}"</view>
       </view>
     </view>
-    <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
-      <icon class="weui-icon-search" type="search" size="14"></icon>
-      <view class="weui-search-bar__text">搜索</view>
-    </label>
   </view>
 
 
-
-  <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput" style='font-size:15px'>取消</view>
-  </view>
-
-
-
-  <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
-    <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-      <view class="weui-cell__bd">
-        <view>实时搜索文本</view>
+  <view class='search-result-list' wx:if='{{result_showed}}'>
+    <view wx:for='{{search_result.songs}}'  wx:for-item='music' style=''>
+      <view class='result-music' style='padding-left:40rpx;padding-top:20rpx;padding-bottom:20rpx'>
+        <text class='song-name'>{{music.name}}</text>
+        <view class='detail-layout'>
+          <block wx:for='{{music.artists}}' wx:for-item='artist'>
+            <text class='song-detail'>{{artist.name}}/</text>
+          </block>
+          <text class='song-detail'> -{{music.album.name}}</text>
+        </view>
       </view>
-    </navigator>
-
-
+    </view>
+  </view> 
 
 </view>
+
+
+
+<!-- <view class="weui-cells searchbar-result" wx:if="{{search_showed}}">
+  <view class="weui-cell" hover-class="weui-cell_active">
+    <view class="weui-cell__bd">
+      <view bindtap='search'>搜索"{{inputVal}}"</view>
+    </view>
+  </view>
+</view> -->
+
+<!-- <view class='search_result_list' wx:if='{{!result_showed}}' >
+  <view wx:for='{{search_result}}' wx:for-item='list' wx:key='unique'>
+    <view class='result-music'>
+      <text>{{list.songs[index].name}}</text>
+    </view>
+  </view>
+</view> -->
+
