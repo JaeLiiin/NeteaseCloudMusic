@@ -22,7 +22,7 @@ Page({
       search_showed:false,
     })
     wx.request({
-      url: 'http://123.207.142.115:3000/search?keywords='+that.data.inputVal+'&limit=30',
+      url: 'http://123.207.142.115:3000/search?keywords='+that.data.inputVal+'&limit=60',
       header:{
         'content-type' : 'application:json'    //默认值
       },

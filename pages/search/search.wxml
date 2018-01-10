@@ -32,7 +32,7 @@
 
   <view class='search-result-list' wx:if='{{result_showed}}'>
     <view wx:for='{{search_result.songs}}'  wx:for-item='music' style=''>
-      <view class='result-music' style='padding-left:40rpx;padding-top:20rpx;padding-bottom:20rpx'>
+      <view class='result-music' style='padding-left:40rpx;padding-top:20rpx;padding-bottom:20rpx' id='{{index}}' bindtap='music_access'>
         <text class='song-name'>{{music.name}}</text>
         <view class='detail-layout'>
           <block wx:for='{{music.artists}}' wx:for-item='artist'>
