@@ -24,9 +24,9 @@
         <view class='music-detail' style='width:100%'>
           <text class='music-name'>{{music.name}}</text>
           <view class='music-desc'>
-            <block wx:for='{{music.ar}}' wx wx:for-item='singer' wx:key='unique'>
-              <text class='music-singer'>{{singer.name}}/</text>
-            </block>
+            <!-- <block wx:for='{{music.ar}}' wx wx:for-item='singer' wx:key='unique'> -->
+              <text class='music-singer'>{{music.ar[0].name}}</text>
+            <!-- </block> -->
             <text class='music-singer'> -{{music.al.name}}</text>
           </view>
         </view>

@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    animation: "",
     play_flag : true,
     icon_playorpause: "icon-zanting",
     screen_width : 0,
@@ -60,6 +61,7 @@ Page({
     }
   },
   music_play : function(music_url){
+    var that = this;
     const backgroundAudioManager = wx.getBackgroundAudioManager();
     backgroundAudioManager.title = this.data.music_dat[this.data.active_music].name;
     console.log(music_url);
@@ -79,8 +81,12 @@ Page({
         active_music : --active_music
       });
     }
+    this.setData({
+      icon_playorpause: "icon-zanting"
+    });
     this.music_refresh();
     this.music_request();
+
   },
   next_music : function(){
     var length = this.data.music_length;
@@ -95,8 +101,12 @@ Page({
         active_music: ++active_music
       });
     }
+    this.setData({
+      icon_playorpause: "icon-zanting"
+    });
     this.music_refresh();
     this.music_request();
+
   },
   music_refresh : function(){
     var active_music = this.data.active_music;
@@ -105,10 +115,13 @@ Page({
       music_pic_url: music_dat[active_music].pic_url,
       music_plur_pic_url: "http://music.163.com/api/img/blur/" + music_dat[active_music].str,
     })
+    wx.setStorage({
+      key: 'active_music',
+      data: active_music,
+    })
   },
   music_request : function(){
     var that =this;
-    console.log(this.data.active_music);
     var music_current_id = this.data.music_dat[this.data.active_music].id
     this.setData({
       music_current_id: music_current_id
@@ -146,6 +159,9 @@ Page({
       music_length : music_length
     })
   },
+  music_show_refresh : function(){
+
+  },
   onLoad: function (options) {
     var that = this;
     this.music_load();
@@ -156,12 +172,10 @@ Page({
           screen_height : res.windowHeight
         });
       },
-    });
-    
+    }); 
     this.music_request();
   },
   
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -172,6 +186,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.animation = wx.createAnimation({
+      duration: 1400,
+      timingFunction: 'linear',
+      delay: 0,
+      transformOrigin: '50% 50% 0'
+    })
+    this.setData({
+      icon_playorpause: "icon-zanting",
+    });
     this.music_load();
     this.music_request();
   },

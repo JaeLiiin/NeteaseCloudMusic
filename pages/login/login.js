@@ -13,33 +13,36 @@ Page({
   },
   login_cellphone: function (){
     var that = this;
-    wx.request({
-      url: "http://123.207.142.115:3000/login/cellphone",
-      data: {
-        phone: '13297047486',
-        password: 'hyfh789pop'
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: function (res) {
-        that.process_data(res);
-        wx.switchTab({
-          url: '/pages/index/index',
-          data: {
-            profile: res.data
-          }
-        })
-      },
-      fail: function (res) {
-        wx.showModal({
-          title: '登录失败',
-          content: '用户名或密码错误',
-          showCancel: false,
-          confirmText: "OK"
-        })
-      }
-    });
+    // wx.request({
+    //   url: "http://123.207.142.115:3000/login/cellphone",
+    //   data: {
+    //     phone: '13297047486',
+    //     password: 'hyfh789pop'
+    //   },
+    //   header: {
+    //     'content-type': 'application/json' // 默认值
+    //   },
+    //   success: function (res) {
+    //     that.process_data(res);
+    //     wx.switchTab({
+    //       url: '/pages/index/index',
+    //       data: {
+    //         profile: res.data
+    //       }
+    //     })
+    //   },
+    //   fail: function (res) {
+    //     wx.showModal({
+    //       title: '登录失败',
+    //       content: '用户名或密码错误',
+    //       showCancel: false,
+    //       confirmText: "OK"
+    //     })
+    //   }
+    // });
+    wx.navigateTo({
+      url: '/pages/login_cellphone/login_cellphone',
+    })
     // wx.switchTab({
     //   url: '/pages/index/index',
     // })

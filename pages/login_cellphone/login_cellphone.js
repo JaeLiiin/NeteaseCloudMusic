@@ -10,6 +10,7 @@ Page({
   login: function(e){
     var cellphone = e.detail.value.cellphone;
     var password = e.detail.value.password;
+    var that = this;
     wx.request({
       url: "http://123.207.142.115:3000/login/cellphone",
       data: {
@@ -20,13 +21,15 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success: function(res){
-        console.log(res.data);
+        
+        that.process_data(res);
         wx.switchTab({
           url: '/pages/index/index',
-          data:{
-            profile:res.data
-          }
+          // data:{
+          //   profile:res.data
+          // }
         })
+        
         // wx.navigateTo({
         //   url: '/pages/login_cellphone/login_cellphone'
         //   // data: {
@@ -93,5 +96,20 @@ Page({
   onReachBottom: function () {
   
   },
+  process_data: function (res) {
+    var user_data = new Object();
+    user_data.id = res.data.account.id;
+    user_data.avatarUrl = res.data.profile.avatarUrl;
+    user_data.backgroundUrl = res.data.profile.backgroundUrl;
+    user_data.birthday = res.data.profile.birthday;
+    user_data.province = res.data.profile.province;
+    user_data.nickname = res.data.profile.nickname;
+    user_data.gender = res.data.profile.gender;
+    user_data.signature = res.data.profile.signature;
+    wx.setStorage({
+      key: 'user_data',
+      data: user_data,
+    })
+  }
 
 })

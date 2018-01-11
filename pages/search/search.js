@@ -33,13 +33,7 @@ Page({
         })
       }
     })
-
-
-    
   },
-
-
-
   search:function(e){
     var that = this;
     console.log(this.data.inputVal);
@@ -106,8 +100,7 @@ Page({
       success: function (res) {
         that.setData({
           search_result: res.data.result,
-        }),
-          console.log(res.data)
+        })
       },
     })
   },
@@ -166,14 +159,12 @@ Page({
     var that = this;
     var music_list = new Array();   //歌单数组
     var music_data = new Object();
-      music_data.name = res.name;
-      music_data.id = res.id;
-      music_data.str = that.data.pic_id;
-      music_data.pic_url = that.data.pic_url;
-      music_list.push(music_data);
-      console.log(music_list);
+    music_data.name = res.name;
+    music_data.id = res.id;
+    music_data.str = that.data.pic_id;
+    music_data.pic_url = that.data.pic_url;
+    music_list.push(music_data);
     wx.setStorageSync('music_list', music_list);
-    // wx.setStorageSync('active_music', this.data.active_music);
-
+    wx.setStorageSync('active_music', 0)
   }
 })

@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/music_on/music_on",
+    
     "pages/login/login",
+    "pages/music_on/music_on",
     "pages/music_list/music_list",
     "pages/index/index",
     "pages/search/search",
